@@ -85,11 +85,7 @@ export default function createWebMFromFrames(fileWritableStream, settings) {
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  The script below is from here: https://w3c.github.io/webcodecs/samples/capture-to-file/webm-writer2.js   //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+// See: https://gist.github.com/josephrocca/0d6ea26370b897cb71ef9cb3b947fcd6
 
 /**
  * A tool for presenting an ArrayBuffer as a stream for writing some simple data
