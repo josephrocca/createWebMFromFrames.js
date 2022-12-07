@@ -12,6 +12,8 @@
   <input type="file" accept="video/mp4" onchange="start(this.files[0])">
   <br>
   <canvas id="canvasEl"></canvas>
+  <br>
+  <textarea id="logsEl" style="width:400px; height:200px;"></textarea>
   
   <script type="module">
     import createWebMFromFrames from "https://deno.land/x/create_webm_from_frames@v0.0.4/mod.js";
@@ -34,7 +36,7 @@
       });
       let fileWritableStream = await fileHandle.createWritable();
       
-      document.body.innerHTML += "<p>Encoding frames...</p>";
+      logsEl.value += "Encoding frames...\n";
       
       let webm;
 
@@ -55,7 +57,7 @@
       await webm.save();
       URL.revokeObjectURL(file); // revoke video URL to prevent memory leak
       console.log("Done.");
-      document.body.innerHTML += "<p>Done.</p>";
+      logsEl.value += "Done.\n";
     }
   </script>
 </body>
