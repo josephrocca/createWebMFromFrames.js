@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Create a WebM Video from frames</title>
+</head>
+<body>
+  <p>This demo uses <a href="https://github.com/josephrocca/getVideoFrames.js" target="_blank">getVideoFrames.js</a> to break an mp4 video into a stream of frames which are then fed into a webm file. Select an mp4 file to be converted to webm:</p>
+  
+  <input type="file" accept="video/mp4" onchange="start(this.files[0])">
+  <br>
+  <canvas id="canvasEl"></canvas>
+  
+  <script type="module">
+    import createWebMFromFrames from "https://deno.land/x/create_webm_from_frames@v0.0.1/mod.js";
+    import getVideoFrames from "https://deno.land/x/get_video_frames@v0.0.5/mod.js"
+
+    window.start = async function(file) {
+      let ctx = canvasEl.getContext("2d"); 
+
+      // `getVideoFrames` requires a video URL as input.
+      // If you have a file/blob instead of a videoUrl, turn it into a URL like this:
+      let videoUrl = URL.createObjectURL(file);
+      
+      let fileHandle = await window.showSaveFilePicker({
+        startIn: 'videos',
+        suggestedName: 'myVideo.webm',
+        types: [{
+          description: 'Video File',
+          accept: {'video/webm' :['.webm']},
+        }],
+      });
+      let fileWritableStream = await fileHandle.createWritable();
+      
+      let webm;
+
+      await getVideoFrames({
+        videoUrl,
+        onConfig: async function(config) {
+          webm = createWebM(fileWritableStream, {width:config.codedWidth, height:config.codedHeight, bitrate:10e6});
+          canvasEl.width = config.codedWidth;
+          canvasEl.height = config.codedHeight;
+        },
+        onFrame: function(frame) {
+          webm.addFrame(frame);
+          frame.close();
+        },
+      });
+      
+      webm.save();
+      URL.revokeObjectURL(file); // revoke video URL to prevent memory leak
+      console.log("Done.");
+    }
+  </script>
+</body>
+</html>
