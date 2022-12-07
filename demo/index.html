@@ -44,6 +44,7 @@
           canvasEl.height = config.codedHeight;
         },
         onFrame: function(frame) {
+          ctx.drawImage(frame, 0, 0, canvasEl.width, canvasEl.height);
           webm.addFrame(frame);
           frame.close();
         },
