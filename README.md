@@ -15,7 +15,7 @@ let fileHandle = await window.showSaveFilePicker({
 
 let fileWritableStream = await fileHandle.createWritable();
 
-let webm = createWebM(fileWritableStream, {width:config.codedWidth, height:config.codedHeight, bitrate:10e6});
+let webm = createWebMFromFrames(fileWritableStream, {width:config.codedWidth, height:config.codedHeight, bitrate:10e6});
 
 webm.addFrame(frame1);
 webm.addFrame(frame2);
