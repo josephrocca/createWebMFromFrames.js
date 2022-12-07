@@ -2,7 +2,7 @@
 Creates a WebM video from a series of frames using the new WebCodecs API.
 
 ```js
-import createWebMFromFrames from "https://deno.land/x/create_webm_from_frames@v0.0.1/mod.js";
+import createWebMFromFrames from "https://deno.land/x/create_webm_from_frames@v0.0.2/mod.js";
 
 let fileHandle = await window.showSaveFilePicker({
   startIn: 'videos',
