@@ -52,6 +52,7 @@
       await webm.save();
       URL.revokeObjectURL(file); // revoke video URL to prevent memory leak
       console.log("Done.");
+      document.body.innerHTML += "<p>DONE</p>";
     }
   </script>
 </body>
