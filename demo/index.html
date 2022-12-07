@@ -6,7 +6,8 @@
   <title>Create a WebM Video from frames</title>
 </head>
 <body>
-  <p>This demo uses <a href="https://github.com/josephrocca/getVideoFrames.js" target="_blank">getVideoFrames.js</a> to break an mp4 video into a stream of frames which are then fed into a webm file. Select an mp4 file to be converted to webm:</p>
+  <h1>Create a WebM Video from frames</h1>
+  <p>This demo uses <a href="https://github.com/josephrocca/getVideoFrames.js" target="_blank">getVideoFrames.js</a> to break an mp4 video into a stream of frames which are then encoded into a webm file. Select an mp4 file to be converted to webm:</p>
   
   <input type="file" accept="video/mp4" onchange="start(this.files[0])">
   <br>
@@ -48,7 +49,7 @@
         },
       });
       
-      webm.save();
+      await webm.save();
       URL.revokeObjectURL(file); // revoke video URL to prevent memory leak
       console.log("Done.");
     }
