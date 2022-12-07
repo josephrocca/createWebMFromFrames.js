@@ -38,7 +38,7 @@
       await getVideoFrames({
         videoUrl,
         onConfig: async function(config) {
-          webm = createWebM(fileWritableStream, {width:config.codedWidth, height:config.codedHeight, bitrate:10e6});
+          webm = createWebMFromFrames(fileWritableStream, {width:config.codedWidth, height:config.codedHeight, bitrate:10e6});
           canvasEl.width = config.codedWidth;
           canvasEl.height = config.codedHeight;
         },
