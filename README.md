@@ -25,4 +25,5 @@ await webm.save();
 
 * Demo: https://josephrocca.github.io/createWebMFromFrames.js/demo
 * All credit for this script goes to [Nicholas Sherlock and jimbankoski](https://w3c.github.io/webcodecs/samples/capture-to-file/webm-writer2.js).
+* For some reason the resulting WebM videos don't play properly in VLC, but they do play properly in Chrome and Firefix (I haven't tested any others). There might be updates on this [here](https://github.com/w3c/webcodecs/issues/332#issuecomment-1341489961).
 
