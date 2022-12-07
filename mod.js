@@ -721,7 +721,7 @@ function writeEBML(buffer, bufferFileOffset, ebml) {
  */
 let WebMWriter = function(ArrayBufferDataStream, BlobBuffer) {
   return function(options) {
-    let MAX_CLUSTER_DURATION_MSEC = 5000000, DEFAULT_TRACK_NUMBER = 1,
+    let MAX_CLUSTER_DURATION_MSEC = 5000, DEFAULT_TRACK_NUMBER = 1,
         writtenHeader = false, videoWidth = 0, videoHeight = 0,
         firstTimestampEver = true, earliestTimestamp = 0,
 
@@ -1063,7 +1063,11 @@ let WebMWriter = function(ArrayBufferDataStream, BlobBuffer) {
      * CuePoints (use addCuePoint()). The seek entry for the Cues in the
      * SeekHead is updated.
      */
+    let firstCueWritten = false;
     function writeCues() {
+      if(firstCueWritten) return;
+      firstCueWritten = true;
+      
       let ebml = {'id': 0x1C53BB6B, 'data': cues},
 
           cuesBuffer = new ArrayBufferDataStream(
