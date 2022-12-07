@@ -29,7 +29,7 @@ export default function createWebMFromFrames(fileWritableStream, settings) {
   encoder.configure(config);
 
   function addFrame(frame) {
-    encoder.encode(frame);
+    encoder.encode(frame, {keyFrame:true});
   }
 
   let alreadySaved = false;
