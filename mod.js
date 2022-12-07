@@ -36,17 +36,10 @@ export default function createWebMFromFrames(fileWritableStream, settings) {
   async function save() {
     if(alreadySaved) throw new Error("Already saved.");
     await encoder.flush();
+    await webmWriter.complete();
     encoder.close();
     fileWritableStream.close();
-    await webmWriter.complete();
     alreadySaved = true;
-  }
-
-  async function complete() {
-    await encoder.flush();
-    encoder.close();
-    fileWritableStream.close();
-    await webmWriter.complete();
   }
 
   function flushQueue() {
