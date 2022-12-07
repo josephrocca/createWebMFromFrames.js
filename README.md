@@ -20,7 +20,7 @@ let webm = createWebMFromFrames(fileWritableStream, {width:config.codedWidth, he
 webm.addFrame(frame1);
 webm.addFrame(frame2);
 
-webm.save();
+await webm.save();
 ```
 
 * Demo: https://josephrocca.github.io/createWebMFromFrames.js/demo
