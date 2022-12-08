@@ -17,6 +17,7 @@ let fileWritableStream = await fileHandle.createWritable();
 
 let webm = createWebMFromFrames(fileWritableStream, {width:config.codedWidth, height:config.codedHeight, bitrate:10e6});
 
+// The frames should be a `VideoFrame` which can be created from an image/canvas/etc. --> https://developer.mozilla.org/en-US/docs/Web/API/VideoFrame/VideoFrame
 webm.addFrame(frame1);
 webm.addFrame(frame2);
 
